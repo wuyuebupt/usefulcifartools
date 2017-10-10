@@ -22,9 +22,11 @@ if __name__ == '__main__':
 	usedend = 50
 
 	selected = []
+	mappingnewclass = {}
 	for i in range(usedstart, usedend):
 		# print i
 		selected.append(mapping[i])
+		mappingnewclass[mapping[i]] = i
 		
 	print selected
 	ret = []		
@@ -32,7 +34,8 @@ if __name__ == '__main__':
 		if label[i] in selected:
 			img = data[i].reshape(3,32,32)
 			img = np.transpose(img, [1, 2, 0])
-			ret.append([img, label[i]])
+			ret.append([img, mappingnewclass[label[i]]])
+			# ret.append([img, label[i]])
 	
 	print len(ret)
 	savename = 'cifartop50.p'
